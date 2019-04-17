@@ -1,12 +1,12 @@
 {
-  "type": "service_account",
-  "project_id": "learned-alcove-236001",
-  "private_key_id": "6ef9d5fbb9b4b85e406aa56d75f85b1b06e85190",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC04VkcDlJxRHdp\nA6jl/lQQTt0zdHpuc4WWCB2zNchmoqu0r0WiX3pOxNCJWQKjoPvqRuosBRxmaIhr\niqXqOypx7i/VMJtfYZxRcDw2ERIzmtZhxulsPV+qwhu/kpka1fnJqc5036ip7oJ+\n1VYJWhj4eoNkSsjp2euJ7O6J77hSaTIAM7EX8tupIGw/qbuuES/G6LYWQUewW+Sp\nGW0Brh4yINp8fZnqRy/jNmSl07Une6n0YNXBqOhg9C2xIvX/qC3bdlkqytQMq1Tm\njbGuJ4XsHT1jQNxjHVL1JiXFXxTyf7yH7Z+UO0L4wQYSQowvaNuhGG9aiNztA59/\nSWknIDMFAgMBAAECgf8MIRBYpp01+zaxVA1/XrlEXrAhQy5H5Hc7baU63zW7rCzX\ncOllJKyO8PkK520bNoWuBWiuiv6HNNCbutsQBJJUEXojpvQZm/IKLqcwTkoU1nff\nFqI7H+J1EOR2Ht56w4knJ2aGGnlflnQpt8830VLbVrEjiIrweNcn6JDBBHzXtG5U\n0p+B14E8rLXnK67oOdtqhOoifc+nY+7ndmEX809aJ2mzqnSR7HTcWu2kY2Sh0Bz1\nBA6qhmIlMWzWmi+ix85RLpQX1Ema/uQNdyGw2RLdPqkblJtoKi+wNUH2Cmc6CHrm\nw+CvpyheGHHFAJ7e+ZvKIiSji9XN2YxMu3t7rPECgYEA9/Tz7FhvviaSHBO9TW6k\nA+Uj/hbDkuhlCT5TpAY7nn8/vAkTzMLX0e3uhguUXqOG0/+r9C4WaF8afqN7TgFK\nWdfl/uzsP/xnrTWIHGDblzasBxaju4xHjwnS87qTlB/SjJ7FuY/RsVEDyA0gq8fA\ndkQeLvzhq15TfO4GARXiu6kCgYEAur9jPpXIhzVQ9YmoCaunXfUC5O0CPcxqX7lg\noGFngqSBNHwuSuEpYSxIh6bsywcY8j1YtJxJry1yuwNN0S4Wnl04bv6fvM3nv9N6\nIyDdHUDZOvv4XynFdpNs2wPccGjAePblmbHvoEMIH7jgaIGSVP1onT0BDoH85ywm\nWG1U9f0CgYEAstoVN91yfI4FxgrW+QtdcxHNLHHvEABhIJG8cwur5V+T8WX6yi+g\nzOP6sOWZV8pMbo500eSMdSxkSART5Kg5oSSB2ae7oUvG3MFINHAI9MGSxGooIBfH\nZf2IFBX4bVem35eGt5ptfqEZQSt27XFf+e6YdvwhKyMWxX5LBm1q5kECgYBeUj5B\nJQv0ZpRuf8mUoNNW3GJK1/6S0gVENfA88RWD4ay0oqgK//CTePdlNIVTAlGyQBPm\nnS2GQhE5rbCHH50i/Xh8bzSk+ua7d4ev6HBlzxQo+4z2G7X1bv7DHA8h43abYjCT\nUVDzhAe9ZfZKMm+DZ76H9IDtH/Bpnl37ubT4zQKBgQDBRs4QujzdBEUdy8mz1Ckg\nBl02RY55/gCEjxJwZksaZ1qsZijk/OgUDrxnHgrvoI4AR4RKwA9GN4DkFiDSJJEH\nUzGqF+P9KTkj+QzgwhDP4smrI1xIhEckuT0+3tQK08Qnoh/i4UHghvuxpGuxxCwC\n86M6OamO6tY8mFuUrbPPMg==\n-----END PRIVATE KEY-----\n",
-  "client_email": "storage-development@learned-alcove-236001.iam.gserviceaccount.com",
-  "client_id": "110802116864940735840",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/storage-development%40learned-alcove-236001.iam.gserviceaccount.com"
+  "type": "XXXXXX",
+  "project_id": "XXXXX",
+  "private_key_id": "XXXXXXXX",
+  "private_key": "XXXXXXXXX",
+  "client_email": "XXXXXXXX",
+  "client_id": "XXXXXXXX",
+  "auth_uri": "XXXXXXXXX",
+  "token_uri": "XXXXXXXXXXX",
+  "auth_provider_x509_cert_url": "XXXXXXXX",
+  "client_x509_cert_url": "XXXXXXXXXX"
 }

@@ -27,30 +27,30 @@ module.exports = {
         },
     },
     storage: {
-        projectId: 'learned-alcove-236001',
+        projectId: 'XXXXXXXXX',
         keyFile: `${__dirname}/keys/storage.json`,
-        bucket: 'pricelap-development',
+        bucket: 'XXXXXXXXXXXXX',
         url: 'https://storage.googleapis.com/pricelap-development',
     },
     facebook: {
-        clientID: '978221015900656',
-        clientSecret: '50599e03ea4bc1baa82e12de415e9859',
+        clientID: 'XXXXXXXXXXXX',
+        clientSecret: 'XXXXXXXXXXXXX',
         callbackURL: `https://${api.host}:${api.port}/api/auth/facebook/callback`,
         profileFields: ['name', 'email']
     },
     google: {
-        'clientID': '139805002612-c10uj887j4gq5e03obb46j01ohub1mft.apps.googleusercontent.com',
-        'clientSecret': 'dOD3QKXy7upBirQrKoSBzpGy',
+        'clientID': 'XXXXXXXXXXX',
+        'clientSecret': 'XXXXXXXXXXX',
         'callbackURL': 'http://localhost:3000/api/auth/google/callback'
     },
     twitter: {
-        'consumerKey': 'NGZE2VMcBIJHljVCyp6KZQUcw',
-        'consumerSecret': 'GXNVblqktxNc7zLkyqneXrsLvJhqsjxA6UpA5YCmSfOQz8YKkI',
+        'consumerKey': 'XXXXXXXXXXX',
+        'consumerSecret': 'XXXXXXXXXXXX',
         'callbackURL': 'http://localhost:3000/api/auth/twitter/callback',
         includeEmail: true
     },
     jwt: {
-        key: '@#dssd09*76&&'
+        key: 'XXXXXXXXXXXX'
     },
     session: {
         timeout: 1000000000000000//in Minutes
