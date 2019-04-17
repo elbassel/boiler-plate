@@ -10,7 +10,7 @@ module.exports = {
     api,
     baseUrlWeb: 'http://localhost:3000',
     expressSession: {
-        'secret': 'ASSA&*%F$$#D2', 
+        'secret': 'XXXXXXXXXXXS', 
         resave: true, 
         saveUninitialized: true 
     },
