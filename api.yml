@@ -1,0 +1,545 @@
+openapi: 3.0.1
+info:
+    title: Bites
+    description: Food & Restaurants Service
+    version: 1.0.0
+servers:
+- url: 'http://localhost:3000'
+- url: 'http://35.237.223.245:3000/'
+paths:
+    /:
+        get:
+            security:
+            - ApiKeyAuth: []
+            tags:
+            - Public
+            summary: Get API Version
+            responses:
+                200:
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/apiVersion'
+                404:
+                    $ref: '#/components/responses/notFound'
+                403:
+                    $ref: '#/components/responses/unauthenticated'
+    /status:
+        get:
+            security:
+            - ApiKeyAuth: []
+            tags:
+            - Public
+            summary: Check if the server up and running
+            responses:
+                200:
+                    description: Successful operation, returns OK
+                404:
+                    $ref: '#/components/responses/notFound'
+                403:
+                    $ref: '#/components/responses/unauthenticated'
+
+    /api/register:
+        post:
+            security:
+            - ApiKeyAuth: []
+            tags:
+            - Public
+            summary: Register new user.
+            description: >
+                Adds a JSON object representing the user's details.
+            operationId: registerUser
+            parameters:
+            - name: time
+              in: header
+              description: >
+                  Local time (UTC).
+              required: false
+              schema:
+                  type: string
+            requestBody:
+                description: >
+                    A JSON object representing the user's details.
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/userRegisterRequest'
+            responses:
+                '200':
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/userResponse'
+                '404':
+                    $ref: '#/components/responses/notFound'
+                '401':
+                    $ref: '#/components/responses/unauthorized'
+                '403':
+                    $ref: '#/components/responses/unauthenticated'
+
+    /api/auth/login:
+        post:
+            tags:
+            - Public
+            summary: User login.
+            description: >
+                Adds a JSON object representing the user's login info.
+            operationId: loginUser
+            parameters:
+            - name: time
+              in: header
+              description: >
+                  Local time (UTC).
+              required: false
+              schema:
+                  type: string
+            requestBody:
+                description: >
+                    A JSON object representing the user's login info.
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/loginRequest'
+                        example:
+                            username: 'foo.bar@email.com'
+                            password: 'password0'
+            responses:
+                '200':
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/userResponse'
+                '404':
+                    $ref: '#/components/responses/notFound'
+                '401':
+                    $ref: '#/components/responses/unauthorized'
+                '403':
+                    $ref: '#/components/responses/unauthenticated'
+
+    /api/users/{id}/email/confirm/request:
+        get:
+            security:
+            - ApiKeyAuth: []
+            summary: Send verification email to veriy user email
+            tags: 
+            - Confirm Email
+            parameters:
+            - in: path
+              name: id
+              schema: 
+                type: string
+                required: true
+            responses:
+                200:
+                    description: an email sent to verify email
+                403:
+                    $ref: '#/components/responses/unauthenticated'
+                409:
+                    description: Failed for a reason
+                    $ref: '#/components/responses/business-error'    
+    /api/users/email/confirm/:
+        get:
+            tags: 
+            - Confirm Email
+            summary: Verify email by token
+            parameters:
+            - in: query
+              name: token
+              schema: 
+                type: string
+                required: true
+            responses:
+                200:
+                    description: Verify email
+                403:
+                    $ref: '#/components/responses/unauthenticated'
+                409:
+                    description: Failed for a reason
+                    $ref: '#/components/responses/business-error'    
+
+    /api/auth/forgetpassword/request:
+        post:
+            summary: Send forget password mail to the customer
+            tags:  
+            - Reset Password
+            requestBody:
+                description: >
+                    A JSON object contains email.
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    example: email@domain.com
+            responses:
+                200:
+                    description: Mail sent to reset password
+
+    /api/users/{id}/forgetpassword/reset:
+        post:
+            security:
+            - ApiKeyAuth: []
+            summary: Send forget password mail to the customer
+            tags:  
+            - Reset Password
+            parameters:
+                - in: path
+                  name: id
+                  schema:
+                    type: string
+                    required: true
+            requestBody:
+                description: >
+                    A JSON object contains email.
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                password:
+                                    type: string
+                                    example: \********
+            responses:
+                200:
+                    description: Passord reset successfully
+                403:
+                    $ref: '#/components/responses/unauthenticated'
+                404:
+                    description: User not found
+
+
+    /api/auth/facebook:
+        get:
+            tags:
+            - Social Login
+            summary: User login by facebook.
+            description: >
+                Adds a JSON object representing the user's login info.
+            operationId: loginUser
+            parameters:
+            - name: time
+              in: header
+              description: >
+                  Local time (UTC).
+              required: false
+              schema:
+                  type: string
+            responses:
+                '200':
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/userResponse'
+                '404':
+                    $ref: '#/components/responses/notFound'
+                '401':
+                    $ref: '#/components/responses/unauthorized'
+                '403':
+                    $ref: '#/components/responses/unauthenticated'
+
+    /api/auth/google:
+        get:
+            tags:
+            - Social Login
+            summary: User login by Google.
+            description: >
+                Adds a JSON object representing the user's login info.
+            operationId: loginUser
+            parameters:
+            - name: time
+              in: header
+              description: >
+                  Local time (UTC).
+              required: false
+              schema:
+                  type: string
+            responses:
+                '200':
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/userResponse'
+                '404':
+                    $ref: '#/components/responses/notFound'
+                '401':
+                    $ref: '#/components/responses/unauthorized'
+                '403':
+                    $ref: '#/components/responses/unauthenticated'
+    /api/auth/twitter:
+        get:
+            tags:
+            - Social Login
+            summary: User login by twitter.
+            description: >
+                Adds a JSON object representing the user's login info.
+            operationId: loginUser
+            parameters:
+            - name: time
+              in: header
+              description: >
+                  Local time (UTC).
+              required: false
+              schema:
+                  type: string
+            responses:
+                '200':
+                    description: Successful operation
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/userResponse'
+                '404':
+                    $ref: '#/components/responses/notFound'
+                '401':
+                    $ref: '#/components/responses/unauthorized'
+                '403':
+                    $ref: '#/components/responses/unauthenticated'
+
+
+
+
+components:
+    securitySchemes:
+        ApiKeyAuth:
+            type: apiKey
+            in: header
+            name: Authorization
+    responses:
+        notFound:
+            description: The specified object was not found.
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/errorResponse'
+        unauthenticated:
+            description: Unauthenticated access (login required).
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/errorResponse'
+        unauthorized:
+            description: Unauthorized access.
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/errorResponse'
+        business-error:
+            description: Business error
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/errorResponse'
+    schemas:
+        errorResponse:
+            type: object
+            properties:
+                code:
+                    type: string
+                name:
+                    type: string
+                message:
+                    type: string
+                stack:
+                    type: string
+
+        userRegisterRequest:
+            type: object
+            properties:
+                email:
+                    type: string
+                    example: email@email.com
+                firstName:
+                    type: string
+                    example: Joe
+                lastName:
+                    type: string
+                    example: Bazo
+                password:
+                    type: string
+                    example: \*******
+            required:
+            - email
+            - password
+            - firstName
+            - lastName
+        userResponse:
+                type: object
+                properties:
+                    # _id:
+                    #     type: string
+                    email:
+                        type: string
+                        example: email@domain.com
+                    roles:
+                        type: array
+                        example: [user, admin]
+                        items:
+                            type: string
+                    firstName:
+                        type: string
+                        example: Don
+                    lastName:
+                        type: string
+                        example: Self
+                    confirmed:
+                        type: boolean
+                        example: true
+                    blocked:
+                        type: boolean
+                        example: false
+                    jwt:
+                        type: string
+                        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9tYXJAZ21haWwuY29tIiwiX2lkIjoiNWM5OGVkNmY0NTk1YjI0MTdjOWRjOGU4Iiwicm9sZXMiOlsidXNlciJdLCJleHAiOjYwMDAwMDAxNTUzNTI2MzEwLCJpYXQiOjE1NTM1MjYzMTJ9.OAvaBR50WzwccRPwy__YMaK6qvPFCw3prW12UChR2iQ
+                required:
+                - email
+                - firstName
+                - lastName
+        
+        address:
+            type: object
+            properties:
+                _id:
+                    type: string
+                name:
+                    type: string
+                type:
+                    type: string
+                country:
+                    type: string
+                city:
+                    type: string
+                area:
+                    type: string
+                street:
+                    type: string
+                building:
+                    type: string
+                floor:
+                    type: string
+                apartment:
+                    type: string
+                location:
+                    type: object
+                    properties:
+                        coordinates:
+                            type: array
+                            items:
+                                type: number
+                                format: double
+                landmark:
+                    type: string
+                shipping_note:
+                    type: string
+                mobile:
+                    type: string
+                created_at:
+                    type: "string"
+                    format: "date-time"
+                updated_at:
+                    type: "string"
+                    format: "date-time"
+            required:
+            - name
+            - mobile
+            - type
+            - country
+            - city
+            - street
+        addressRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                type:
+                    type: string
+                country:
+                    type: string
+                city:
+                    type: string
+                area:
+                    type: string
+                street:
+                    type: string
+                building:
+                    type: string
+                floor:
+                    type: string
+                apartment:
+                    type: string
+                location:
+                    type: object
+                    properties:
+                        coordinates:
+                            type: array
+                            items:
+                                type: number
+                                format: double
+                landmark:
+                    type: string
+                shipping_note:
+                    type: string
+
+
+        apiVersion:
+            type: object
+            properties:
+                version:
+                    type: string
+                    example: 1.0
+
+        user:
+                type: object
+                properties:
+                    # _id:
+                    #     type: string
+                    email:
+                        type: string
+                        example: email@domain.com
+                    roles:
+                        type: array
+                        items:
+                            type: string
+                            example: ['user', 'admin']
+                    firstName:
+                        type: string
+                        example: Don
+                    lastName:
+                        type: string
+                        example: Self
+                    confirmed:
+                        type: boolean
+                        example: true
+                    blocked:
+                        type: boolean
+                        example: false
+                    provider:
+                        type: string
+                        example: local
+                required:
+                - email
+                - firstName
+                - lastName
+        loginRequest:
+            type: object
+            properties:
+                username:
+                    type: string
+                    description: Email
+                    example: email@domain.com
+                password:
+                    type: string
+                    example: \******
+            required:
+                - username
+                - password
